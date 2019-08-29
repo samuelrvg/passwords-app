@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
-import data from './data'
+import { data } from './data'
 import colors from './colors'
 
 const Home = () => {

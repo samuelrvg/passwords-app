@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 import colors from './colors'
+import { user } from './data'
 
 const Login = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    useEffect(() => {
+        setEmail(user.email)
+        setPassword(user.password)
+    }, {})
+
     return(
     <View style={styles.container}>
         <>
-            <TextInput style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='e-mail' keyboardType='email-address'/>
-            <TextInput style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='password' keyboardType='number-pad' secureTextEntry={true} maxLength={12}/>
+            <TextInput onChangeText={setEmail} value={email} style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='e-mail' keyboardType='email-address'/>
+            <TextInput onChangeText={setPassword} value={password} style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='password' keyboardType='number-pad' secureTextEntry={true} maxLength={12}/>
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.textButton}>login</Text>
             </TouchableOpacity>

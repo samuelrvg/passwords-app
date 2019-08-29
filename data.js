@@ -1,3 +1,8 @@
+const user = {
+    email:'samuel.rvg@gmail.com',
+    password:'123456'
+}
+
 const data = [
     {
         id:'1',
@@ -61,4 +66,4 @@ const data = [
 //     }
 // ]
 
-export default data;
+export { data, user };

@@ -16,8 +16,8 @@ const Root = () => {
     return(
     <View style={{flex:1}}>
         <StatusBar backgroundColor={colors.primary} barStyle="light-content"></StatusBar>
-        <Home/>
-        {/* <Login/> */}
+        {/* <Home/> */}
+        <Login/>
     </View>)
 }
 
