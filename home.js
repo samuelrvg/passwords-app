@@ -1,14 +1,21 @@
 import React from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
-import data from './src/data'
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import data from './data'
+import colors from './colors'
 
 const Home = () => {
+
+    _onPress= () => {}
+
     return(
         <View style={styles.container}>
-            <View style={styles.card}>
-                <Text>service: gmail</Text>
-                <Text>password: ******</Text>
-            </View>
+            <FlatList data={data}
+                renderItem={({item}) => (
+                <TouchableOpacity style={styles.card} key={item.id} onPress={() => _onPress()}>
+                    <Text style={styles.cardText}>{item.service}</Text>
+                </TouchableOpacity>
+                )}
+            />
         </View>
     )
 }
@@ -16,16 +23,18 @@ const Home = () => {
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#55efc4',
-        paddingHorizontal:20,
+        paddingHorizontal:10,
         paddingTop:10
     },
     card:{
-        // backgroundColor:'red',
-        // height:40
+        backgroundColor: colors.primary,
+        padding:10,
+        borderRadius:5,
+        marginBottom:15
     },
     cardText:{
-        
+        fontSize:18,
+        color:colors.white,
     }
 })
 

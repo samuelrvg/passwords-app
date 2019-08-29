@@ -1,16 +1,17 @@
 import React from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import colors from './colors'
 
 const Login = () => {
     return(
     <View style={styles.container}>
-        <View>
-            <TextInput style={styles.textInput} underlineColorAndroid='#00b894' placeholder='username' keyboardType='email-address'/>
-            <TextInput style={styles.textInput} underlineColorAndroid='#00b894' placeholder='password' keyboardType='number-pad' secureTextEntry={true}/>
+        <>
+            <TextInput style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='e-mail' keyboardType='email-address'/>
+            <TextInput style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='password' keyboardType='number-pad' secureTextEntry={true} maxLength={12}/>
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.textButton}>login</Text>
             </TouchableOpacity>
-        </View>
+        </>
     </View>
     )
 }
@@ -26,14 +27,14 @@ const styles = StyleSheet.create({
         paddingBottom:10,
     },
     button:{
-        backgroundColor:'#00b894',
+        backgroundColor:colors.primary,
         borderRadius:3,
         marginTop:10,
         padding:10
     },
     textButton:{
         textAlign:'center',
-        color:'white',
+        color:colors.white,
         fontSize:16
     }
 })
