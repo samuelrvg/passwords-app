@@ -1,11 +1,13 @@
 import React from 'react'
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
-import { data } from './data'
-import colors from './colors'
+import { data } from '../data'
+import colors from '../colors'
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
-    _onPress= () => {}
+    _onPress= () => {
+        navigation.navigate('Details')
+    }
 
     return(
         <View style={styles.container}>
@@ -18,6 +20,10 @@ const Home = () => {
             />
         </View>
     )
+}
+
+Home.navigationOptions = {
+    title:'Home'
 }
 
 const styles = StyleSheet.create({

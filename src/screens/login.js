@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
-import colors from './colors'
-import { user } from './data'
+import colors from '../colors'
+import { user } from '../data'
 
-const Login = () => {
+const Login = ({ navigation }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,16 +13,18 @@ const Login = () => {
         setPassword(user.password)
     }, {})
 
+    _onPress = () => {
+        navigation.navigate('Home')
+    }
+
     return(
-    <View style={styles.container}>
-        <>
+        <View style={styles.container}>
             <TextInput onChangeText={setEmail} value={email} style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='e-mail' keyboardType='email-address'/>
             <TextInput onChangeText={setPassword} value={password} style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='password' keyboardType='number-pad' secureTextEntry={true} maxLength={12}/>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => _onPress()}>
                 <Text style={styles.textButton}>login</Text>
             </TouchableOpacity>
-        </>
-    </View>
+        </View>
     )
 }
 
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:20,
     },
     textInput:{
-        fontSize:16,
+        fontSize:21,
         paddingBottom:10,
     },
     button:{
