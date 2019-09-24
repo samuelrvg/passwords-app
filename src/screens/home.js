@@ -1,29 +1,39 @@
 import React from 'react'
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import { StackActions, NavigationActions } from 'react-navigation';
 import { data } from '../data'
 import colors from '../colors'
 
 const Home = ({ navigation }) => {
 
-    _onPress= () => {
-        navigation.navigate('Details')
+    const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Login' })],
+      });
+
+    Home.navigationOptions = {
+        title:'Home',
+        headerLeft:(
+            <Button
+            onPress={() => navigation.dispatch(resetAction)}
+            title="Sair"
+            color="black"//{colors.primary}
+        />)
     }
 
     return(
         <View style={styles.container}>
             <FlatList data={data}
                 renderItem={({item}) => (
-                <TouchableOpacity style={styles.card} key={item.id} onPress={() => _onPress()}>
-                    <Text style={styles.cardText}>{item.service}</Text>
-                </TouchableOpacity>
+                    <View style={styles.card}>
+                        <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Details', item.content)}>
+                            <Text style={styles.cardText}>{item.service}</Text>
+                        </TouchableOpacity>
+                    </View>
                 )}
             />
         </View>
     )
-}
-
-Home.navigationOptions = {
-    title:'Home'
 }
 
 const styles = StyleSheet.create({
@@ -34,9 +44,17 @@ const styles = StyleSheet.create({
     },
     card:{
         backgroundColor: colors.primary,
+        margin:5,
         padding:10,
-        borderRadius:5,
-        marginBottom:15
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        
+        elevation: 6,
     },
     cardText:{
         fontSize:18,

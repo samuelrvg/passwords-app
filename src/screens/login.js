@@ -5,13 +5,13 @@ import { user } from '../data'
 
 const Login = ({ navigation }) => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('samuel.rvg@gmail.com');
+    const [password, setPassword] = useState('123456');
 
-    useEffect(() => {
-        setEmail(user.email)
-        setPassword(user.password)
-    }, {})
+    // useEffect(() => {
+    //     setEmail(user.email)
+    //     setPassword(user.password)
+    // }, {})
 
     _onPress = () => {
         navigation.navigate('Home')
@@ -26,6 +26,10 @@ const Login = ({ navigation }) => {
             </TouchableOpacity>
         </View>
     )
+}
+
+Login.navigationOptions = {
+    header:null,
 }
 
 const styles = StyleSheet.create({
