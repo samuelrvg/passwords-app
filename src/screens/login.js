@@ -22,7 +22,7 @@ const Login = ({ navigation }) => {
             <TextInput onChangeText={setEmail} value={email} style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='e-mail' keyboardType='email-address'/>
             <TextInput onChangeText={setPassword} value={password} style={styles.textInput} underlineColorAndroid={colors.primary} placeholder='password' keyboardType='number-pad' secureTextEntry={true} maxLength={12}/>
             <TouchableOpacity style={styles.button} onPress={() => _onPress()}>
-                <Text style={styles.textButton}>login</Text>
+                <Text style={styles.textButton}>Login</Text>
             </TouchableOpacity>
         </View>
     )

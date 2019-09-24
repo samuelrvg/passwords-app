@@ -1,11 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
-import { data } from '../data'
+import { View, Text, StyleSheet, FlatList } from 'react-native'
 import colors from '../colors'
 
 const Details = ({ navigation }) => {
 
-    const contents = navigation.state.params;
+    const contents = navigation.getParam('content', ':( is not found');
 
     return(
         <View style={styles.container}>
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.27,
         shadowRadius: 4.65,
-        
         elevation: 6,
     },
     cardText:{
@@ -48,8 +46,11 @@ const styles = StyleSheet.create({
     }
 })
 
-Details.navigationOptions ={
-    title:'Details'
-}
+Details.navigationOptions = ({ navigation }) => ({
+    title:`${navigation.getParam('service', ':( is not found')}`,
+    headerLeftContainerStyle: {
+        paddingRight: 10,
+      },
+})
 
 export default Details;

@@ -1,32 +1,25 @@
 import React from 'react'
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import Icon from 'react-native-vector-icons/Feather';
 import { StackActions, NavigationActions } from 'react-navigation';
 import { data } from '../data'
 import colors from '../colors'
 
+const resetAction = StackActions.reset({
+    index: 0,
+    actions: [NavigationActions.navigate({ routeName: 'Login' })],
+  });
+
 const Home = ({ navigation }) => {
-
-    const resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Login' })],
-      });
-
-    Home.navigationOptions = {
-        title:'Home',
-        headerLeft:(
-            <Button
-            onPress={() => navigation.dispatch(resetAction)}
-            title="Sair"
-            color="black"//{colors.primary}
-        />)
-    }
 
     return(
         <View style={styles.container}>
             <FlatList data={data}
                 renderItem={({item}) => (
                     <View style={styles.card}>
-                        <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Details', item.content)}>
+                        <TouchableOpacity key={item.id} onPress={() => {
+                            navigation.navigate('Details', {content:item.content, service:item.service})
+                        }}>
                             <Text style={styles.cardText}>{item.service}</Text>
                         </TouchableOpacity>
                     </View>
@@ -35,6 +28,17 @@ const Home = ({ navigation }) => {
         </View>
     )
 }
+
+Home.navigationOptions = ({ navigation }) => ({
+    title:'Accounts',
+    headerLeftContainerStyle:{
+        paddingHorizontal:15
+    },
+    headerLeft:(
+        <TouchableOpacity onPress={() => navigation.dispatch(resetAction)}>
+            <Icon name="log-out" size={28} color={colors.black} />
+        </TouchableOpacity>)
+})
 
 const styles = StyleSheet.create({
     container:{
@@ -53,7 +57,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.27,
         shadowRadius: 4.65,
-        
         elevation: 6,
     },
     cardText:{
